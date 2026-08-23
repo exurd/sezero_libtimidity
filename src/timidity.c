@@ -742,6 +742,11 @@ void mid_song_free(MidSong *song)
     timi_free(song->meta_data[i]);
   }
 
+  // Added for JavaScript port
+  for (i = 0; i < song->load_request_count; i++) {
+    timi_free(song->load_requests[i]);
+  }
+
   timi_free(song);
 }
 
@@ -807,4 +812,29 @@ MidSong *mid_song_load_dls(MidIStream *stream, MidDLSPatches *dlspatches, MidSon
   TIMI_UNUSED(dlspatches);
   TIMI_UNUSED(options);
   return NULL;
+}
+
+// Added for JavaScript port
+extern MidSongOptions *mid_alloc_options(sint32 rate, uint16 format, uint8 channels, uint16 buffer_size)
+{
+  // NOTE: Needed to add argument `1` to timi_calloc since
+  // they removed the function in commit 3091338.
+  MidSongOptions *o = (MidSongOptions *) timi_calloc(1,sizeof(MidSongOptions));
+  o->rate = rate;
+  o->format = format;
+  o->channels = channels;
+  o->buffer_size = buffer_size;
+  return o;
+}
+
+// Added for JavaScript port
+extern int mid_get_load_request_count(MidSong *song)
+{
+  return song->load_request_count;
+}
+
+// Added for JavaScript port
+extern char *mid_get_load_request(MidSong *song, int index)
+{
+  return song->load_requests[index];
 }
