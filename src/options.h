@@ -48,8 +48,9 @@
 /* In percent. */
 #define DEFAULT_AMPLIFICATION	70
 
-/* Default polyphony */
-#define DEFAULT_VOICES	32
+/* Edited for JavaScript port: more polyphony, please!
+   Matches TiMidity++ 2.14.0-8.4's default voices setting. */
+#define DEFAULT_VOICES	256
 
 /* 1000 here will give a control ratio of 22:1 with 22 kHz output.
    Higher CONTROLS_PER_SECOND values allow more accurate rendering
