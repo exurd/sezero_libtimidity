@@ -146,7 +146,9 @@ static void __inline DEBUG_NOP(const char *text, ...) {
 #define MID_VIBRATO_SAMPLE_INCREMENTS 32
 
 /* Maximum polyphony. */
-#define MID_MAX_VOICES	48
+/* Edited for JavaScript port.
+   Don't ask me how I found this one out. */
+#define MID_MAX_VOICES	256
 
 typedef sint16 sample_t;
 typedef sint32 final_volume_t;
